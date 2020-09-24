@@ -8,7 +8,7 @@ function setup(){
     hypball = createSprite(250,250,10,10);
     hypball.shapeColor = "red";
     var hypballPosition=database.ref('ball/position');
-    hypballPosition.on("value",readPosition);
+    hypballPosition.on("value",readPosition,showError);
 }
 
 function draw(){
@@ -43,3 +43,6 @@ function writePosition(x,y){
         'y':position.y+y
     })
 }
+function showError(){
+    console.log("Error in writing to the database");
+  }
