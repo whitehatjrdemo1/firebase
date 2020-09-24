@@ -13,6 +13,7 @@ function setup(){
 
 function draw(){
     background("white");
+    if(position!==undefined){ 
     if(keyDown(LEFT_ARROW)){
         writePosition(-1,0);
     }
@@ -25,24 +26,25 @@ function draw(){
     else if(keyDown(DOWN_ARROW)){
         writePosition(0,+1);
     }
+}
     drawSprites();
 }
 
-function changePosition(x,y){
-    hypball.x = hypball.x + x;
-    hypball.y = hypball.y + y;
-}
+
+
 function readPosition(data){
     position=data.val();
+    console.log(position.x);
     hypball.x=position.x;
-    hypball.y=position.y
+    hypball.y=position.y;
 }
 function writePosition(x,y){
-    database.ref('ball/postion').set({
-        'x':position.x+x,
-        'y':position.y+y
+    database.ref('ball/position').set({
+        'x':position.x + x,
+        'y':position.y + y
     })
 }
+
 function showError(){
     console.log("Error in writing to the database");
-  }
+}
